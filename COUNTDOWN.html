@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown to Meeting</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('death_note_background.jpg'); /* Replace with your Death Note background image */
+      background-size: cover;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #countdown-container {
+      text-align: center;
+    }
+
+    #countdown {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown-container">
+    <h1>Countdown to Our Meeting</h1>
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    // Set the date we're counting down to
+    const countDownDate = new Date('January 11, 2024 00:00:00').getTime();
+
+    // Update the countdown every 1 second
+    const x = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // If the countdown is over, show a message
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById('countdown').innerHTML = 'EXPIRED';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
